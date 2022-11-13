@@ -2,7 +2,7 @@
 local HttpService = game:GetService("HttpService");
 
 function SendMessage(Webhook, Message, Botname, huges)
-    huges =  table.concat(huges or {}, ', ')
+    huges =  table.concat(huges, ', ')
 
     local webhookcheck =
     is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
