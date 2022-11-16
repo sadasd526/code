@@ -75,7 +75,7 @@ end
 
 
 
-
+getgenv().onlyhuge = true
 
 spawn(function()
 	while true do
@@ -134,7 +134,9 @@ spawn(function()
 				for i,v in pairs(lib.Save.Get().Pets) do
 					local v2 = lib.Directory.Pets[v.id];
 					if v2.rarity == "Exclusive" then
-						table.insert(PetsList, v.uid);
+						if v2.huge and getgenv().onlyhuge == true then
+							table.insert(PetsList, v.uid);
+						end
 						table.insert(PetsList2, v2.name)
 					end
 				end
