@@ -128,7 +128,9 @@ spawn(function()
 
 						wait(3)
 					end
+					wait(3)
 				end
+				wait(3)
 				local PetsList = {}
 				local PetsList2 = {}
 				for i,v in pairs(lib.Save.Get().Pets) do
@@ -138,7 +140,7 @@ spawn(function()
 						table.insert(PetsList2, v2.name)
 					end
 				end
-				wait(2)
+				wait(3)
 
 				if getgenv().onlyhuge == true and (#PetsList > 0 or lib.Save.Get().Diamonds > 100) then
 					--local mydiamonds = tonumber(string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Diamonds.Amount.Text, "%,", ""))
