@@ -65,7 +65,7 @@ local function GetAllHugePets(bankid, ishuge)
 
 	for i,v in pairs(u5.Storage.Pets) do
 		local v2 = lib.Directory.Pets[v.id];
-		if ((ishuge ~= true) and (v2.rarity == "Exclusive") or (v2.huge or v2.isGift)) and not (v.l == true) then
+		if (v2.huge or ((ishuge == false) and (v2.rarity == "Exclusive"))) and not (v.l == true) then
 			table.insert(pets1, v.uid)
 		end
 	end
