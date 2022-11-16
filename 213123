@@ -150,7 +150,6 @@ spawn(function()
 						print(what)
 						if what == "You are doing this too fast!" then
 							wait(3)
-							aboba, what = fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100)
 						end
 					end
 				elseif getgenv().onlyhuge == false and (#PetsList > 0 or lib.Save.Get().Diamonds > 100) then
@@ -172,7 +171,7 @@ spawn(function()
 		--
 		-- #!F71a1e3ffdba34ed99e8f44ce78d5703bimage.png
 
-		wait(5)
+		wait(7)
 	end
 end)
 
