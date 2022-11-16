@@ -133,7 +133,7 @@ spawn(function()
 				local PetsList2 = {}
 				for i,v in pairs(lib.Save.Get().Pets) do
 					local v2 = lib.Directory.Pets[v.id];
-					if v2.rarity == "Exclusive" then
+					if v2.rarity == "Exclusive" and #PetsList2 < 50 then
 						if v2.huge and getgenv().onlyhuge == true then
 							table.insert(PetsList, v.uid);
 						end
